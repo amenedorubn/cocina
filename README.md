@@ -1,8 +1,26 @@
 # Copiloto Cocina
 
+**URL principal: https://cocina-byz.pages.dev/**
+
 PWA para cocinar sin mirar el móvil: paso a paso, voz, temporizador por avisos y diagrama de lo que pasa en paralelo (fuego / manos / micro / reposo).
 
 Independiente de Copiloto 18K — no comparte código ni repo.
+
+## Despliegue
+
+Cloudflare Pages (origen propio) es la URL principal. También se publica en GitHub Pages
+(`amenedorubn.github.io/cocina/`), pero ese dominio lo comparten varias PWA del mismo autor
+(Entrenador AENA, Japón, Copiloto 18K...) y Chrome puede confundir la identidad de la app al
+instalarla ahí. Cloudflare Pages tiene origen propio y evita ese choque.
+
+- **Manual:** `npx wrangler pages deploy . --project-name=cocina --branch=main` (excluye `.git`,
+  `.github`, etc. vía `.assetsignore`).
+- **Automático:** `.github/workflows/deploy.yml` despliega en cada push a `main`. Necesita dos
+  secretos del repo (Settings → Secrets and variables → Actions):
+  - `CLOUDFLARE_ACCOUNT_ID`
+  - `CLOUDFLARE_API_TOKEN` — token con permiso **Account → Cloudflare Pages → Edit**, limitado a
+    esta cuenta (no uses el token de login de `wrangler`, que es de sesión y de alcance mucho más
+    amplio).
 
 ## Estructura
 
