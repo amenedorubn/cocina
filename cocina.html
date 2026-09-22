@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E9B00F">
+<title>Copiloto Cocina</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar">
+    <a class="icon" href="index.html" aria-label="Volver al inicio" style="display:flex;align-items:center;justify-content:center;text-decoration:none">←</a>
+    <h1 id="pageTitle">Copiloto Cocina</h1>
+    <span class="pill" id="wl">Pantalla: —</span>
+    <button class="icon" id="voiceBtn" aria-label="Voz">🔊</button>
+  </div>
+
+  <p id="loadError" class="tip hidden" style="color:var(--alarm)"></p>
+
+  <!-- START -->
+  <section id="start" class="hidden">
+    <p class="hero" id="heroTitle"></p>
+    <p class="sub" id="heroSub"></p>
+
+    <div class="box hidden" id="notasBox">
+      <h2>Notas</h2>
+      <div id="notasList"></div>
+    </div>
+
+    <div class="box">
+      <h2>Lo que vas a usar</h2>
+      <ul class="ing" id="ingList"></ul>
+    </div>
+
+    <div class="box">
+      <h2>Qué se hace a la vez</h2>
+      <div id="ganttStart"></div>
+    </div>
+
+    <div class="box hidden" id="repartoBox">
+      <h2>Reparto</h2>
+      <p id="repartoHoy"></p>
+      <p id="repartoTaper"></p>
+      <p id="repartoDia"></p>
+      <div id="repartoRecalentar"></div>
+    </div>
+
+    <div class="box">
+      <h2>Para usarlo sin mirar</h2>
+      <p>Te habla en cada paso, te avisa de lo que toca en paralelo y pita hasta que tocas el botón grande.</p>
+      <p><b>Deja el móvil apoyado y desbloqueado.</b> La pantalla se queda encendida sola. Si lo bloqueas, el tiempo sigue bien, pero no te avisa hasta que lo vuelvas a abrir.</p>
+    </div>
+
+    <div class="box">
+      <div class="switch">
+        <span>Experimental: avisos con pantalla bloqueada</span>
+        <input type="checkbox" id="expToggle" style="width:24px;height:24px">
+      </div>
+      <p class="tip">Prueba un audio casi silencioso + Media Session para intentar que Chrome Android no pause los avisos al bloquear pantalla. Resultado documentado en el README.</p>
+    </div>
+
+    <button class="ghost" id="testVoice">Probar voz y sonido</button>
+    <button class="big" id="go">Empezar a cocinar</button>
+    <button class="ghost hidden" id="resume">Seguir donde lo dejé</button>
+    <button class="ghost" id="planBtnStart">Ver plan completo</button>
+  </section>
+
+  <!-- COOK -->
+  <section id="cook" class="hidden">
+    <div class="prog" id="prog"></div>
+    <div class="meta" id="meta"></div>
+    <div class="title" id="title"></div>
+    <p class="detail" id="detail"></p>
+
+    <div class="timer" id="timerBox">
+      <div class="digits" id="digits">0:00</div>
+      <div class="tbar"><i id="tbar"></i></div>
+      <div class="tstate" id="tstate"></div>
+      <ul class="cuelist" id="cues"></ul>
+    </div>
+
+    <ul class="checks" id="checks"></ul>
+
+    <div class="par" id="par"><h3 id="parH">Mientras tanto</h3><p id="parP"></p></div>
+    <p class="tip" id="tip"></p>
+    <div id="extra"></div>
+    <p class="nextup" id="nextup"></p>
+
+    <div class="dock">
+      <div class="row">
+        <button class="small" id="pauseBtn">Pausa</button>
+        <button class="small" id="plusBtn">+1</button>
+        <button class="big" id="doneBtn">Hecho</button>
+      </div>
+      <button class="back" id="backBtn">← Paso anterior</button>
+      <button class="back" id="planBtn">Ver plan</button>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section id="plan" class="hidden">
+    <div class="box">
+      <h2>Plan completo</h2>
+      <div id="ganttPlan"></div>
+    </div>
+    <button class="big" id="closePlan">Volver</button>
+    <button class="ghost" id="resetBtn">Empezar de cero</button>
+  </section>
+
+</div>
+<script src="js/store.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/recipe.js"></script>
+<script src="js/gantt.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/wakelock.js"></script>
+<script src="js/keepalive.js"></script>
+<script src="js/cook.js"></script>
+</body>
+</html>
