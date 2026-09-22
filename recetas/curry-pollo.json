@@ -1,0 +1,180 @@
+{
+  "id": "curry-pollo",
+  "meta": {
+    "titulo": "Curry de pollo",
+    "raciones": 2,
+    "tiempo_total_min": 25,
+    "notas": [
+      "Jengibre en polvo: el congelado es para las mañanas, no para cocinar.",
+      "Solomillos de pollo: se secan antes que la pechuga, por eso 4 min de dorado y 6 de salsa."
+    ],
+    "reparto": {
+      "hoy": "1 ración con arroz recién hecho.",
+      "taper": "La otra ración SIN arroz, destapada hasta que enfríe; a los 45 min tapar y al congelador.",
+      "dia_consumo": "Viernes",
+      "recalentar": [
+        "Jueves por la noche: táper del congelador a la nevera.",
+        "Viernes: curry al micro 3-4 min, remover a la mitad. Si está espeso, chorrito de leche o agua.",
+        "La otra bolsa de arroz, 3 min al micro. Fresca, no congelada."
+      ]
+    }
+  },
+  "ingredientes": [
+    {"nombre": "Solomillos de pollo", "cantidad": "500 g"},
+    {"nombre": "Cebolla troceada congelada", "cantidad": "2 cdas"},
+    {"nombre": "Ajo troceado congelado", "cantidad": "1 cda"},
+    {"nombre": "Curry", "cantidad": "2 cdtas"},
+    {"nombre": "Curry tostado", "cantidad": "1 cdta"},
+    {"nombre": "Cúrcuma", "cantidad": "½ cdta"},
+    {"nombre": "Comino", "cantidad": "½ cdta"},
+    {"nombre": "Jengibre en polvo", "cantidad": "½ cdta"},
+    {"nombre": "Tomate triturado", "cantidad": "100 g"},
+    {"nombre": "Leche semi", "cantidad": "150 ml"},
+    {"nombre": "AOVE, sal, pimienta", "cantidad": "al gusto"},
+    {"nombre": "Arroz de microondas", "cantidad": "1 bolsa"}
+  ],
+  "pasos": [
+    {
+      "titulo": "Prepara todo antes del fuego",
+      "detalle": "Las especias luego van en 30 segundos. No da tiempo a medir con la sartén al fuego.",
+      "fuego": null,
+      "duracion_s": 0,
+      "estimado": "≈3 min",
+      "carriles": ["manos"],
+      "mientras_tanto": null,
+      "solo_esto": false,
+      "checklist": [
+        "Bol: 2 cdtas curry + 1 cdta curry tostado",
+        "Mismo bol: ½ cdta cúrcuma, ½ comino, ½ jengibre en polvo",
+        "Vaso: 100 g tomate + 150 ml leche",
+        "Platito: 2 cdas cebolla + 1 cda ajo congelados",
+        "A mano: AOVE, sal, pimienta, arroz, táper"
+      ],
+      "avisos": [],
+      "voz_inicio": "Paso uno. Prepara todo antes de encender el fuego. Bol con las especias, vaso con tomate y leche, y el platito con cebolla y ajo congelados. Toca hecho cuando lo tengas.",
+      "voz_fin": null,
+      "consejo": null
+    },
+    {
+      "titulo": "Sartén al fuego y corta el pollo",
+      "detalle": "Sartén vacía al fuego. Sin aceite todavía.",
+      "fuego": "medio-alto",
+      "duracion_s": 240,
+      "carriles": ["fuego", "manos"],
+      "mientras_tanto": "Solomillos en dados de 2–3 cm. Quita el tendón blanco. Sal y pimienta.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [{"a_los_s": 120, "voz": "Dos minutos. Sigue cortando.", "texto": "Mitad del tiempo"}],
+      "voz_inicio": "Paso dos. Sartén vacía a fuego medio alto. Mientras se calienta, corta los solomillos en dados de dos o tres centímetros, quita el tendón blanco y salpimenta. Cuatro minutos.",
+      "voz_fin": "Sartén caliente. Si el pollo está cortado, toca hecho.",
+      "consejo": null
+    },
+    {
+      "titulo": "Dora el pollo",
+      "detalle": "1 cda de AOVE, gira la sartén y echa el pollo en una sola capa. No lo toques 2 min.",
+      "fuego": "medio-alto",
+      "duracion_s": 240,
+      "carriles": ["fuego", "manos"],
+      "mientras_tanto": "Lava tabla y cuchillo con jabón. Han tocado pollo crudo.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [{"a_los_s": 120, "voz": "Dale la vuelta a los dados.", "texto": "Vuelta a los dados"}],
+      "voz_inicio": "Paso tres. Un chorro de aceite, gira la sartén y echa el pollo en una sola capa. No lo toques dos minutos. Mientras, lava la tabla y el cuchillo con jabón.",
+      "voz_fin": "Pollo fuera, a un plato con su jugo. Puede quedar rosado por dentro, se termina en la salsa.",
+      "consejo": "Si no cabe en una capa, hazlo en dos tandas y suma 4 min."
+    },
+    {
+      "titulo": "Cebolla y ajo congelados",
+      "detalle": "Baja el fuego. Echa el platito y remueve cada minuto hasta que no quede agua.",
+      "fuego": "medio",
+      "duracion_s": 240,
+      "carriles": ["fuego"],
+      "mientras_tanto": "Pon el bol de especias pegado a la sartén. El siguiente paso dura 30 segundos.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [{"a_los_s": 120, "voz": "Remueve. Quedan dos minutos.", "texto": "Remover"}],
+      "voz_inicio": "Paso cuatro. Baja a fuego medio. Cebolla y ajo congelados a la sartén. Cuatro minutos, removiendo cada minuto. Deja el bol de especias al lado.",
+      "voz_fin": "¿Queda agua? Si queda, toca más uno. Si no, toca hecho y prepárate: especias, treinta segundos.",
+      "consejo": null
+    },
+    {
+      "titulo": "Especias",
+      "detalle": "Echa el bol y remueve sin parar hasta que huela. Se queman rápido.",
+      "fuego": "medio-bajo",
+      "duracion_s": 30,
+      "carriles": ["fuego"],
+      "mientras_tanto": "Nada más. Solo remover.",
+      "solo_esto": true,
+      "checklist": [],
+      "avisos": [{"a_los_s": 20, "voz": "Diez segundos.", "texto": "10 s"}],
+      "voz_inicio": "Paso cinco. Especias a la sartén y remueve sin parar. Treinta segundos.",
+      "voz_fin": "Tomate y leche, ya.",
+      "consejo": null
+    },
+    {
+      "titulo": "Tomate y leche",
+      "detalle": "Echa el vaso y rasca el fondo con la cuchara. Ahí está el sabor.",
+      "fuego": "medio-bajo",
+      "duracion_s": 60,
+      "carriles": ["fuego"],
+      "mientras_tanto": "Acerca el plato del pollo.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [],
+      "voz_inicio": "Paso seis. Echa el vaso de tomate y leche y rasca bien el fondo. Un minuto.",
+      "voz_fin": "Vuelve el pollo con su jugo. Toca hecho.",
+      "consejo": null
+    },
+    {
+      "titulo": "Pollo a la salsa",
+      "detalle": "Pollo y su jugo a la sartén. Destapado. Que burbujee flojo, sin hervir fuerte (la leche se corta).",
+      "fuego": "bajo",
+      "duracion_s": 360,
+      "carriles": ["fuego", "micro"],
+      "mientras_tanto": "Cuando falten 3 min: arroz al micro, 3 min. Te aviso yo.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [
+        {"a_los_s": 180, "voz": "Arroz al microondas. Tres minutos. Ya.", "texto": "Arroz al micro, 3 min"},
+        {"a_los_s": 300, "voz": "Saca el táper del viernes y tu plato.", "texto": "Táper y plato a mano"}
+      ],
+      "voz_inicio": "Paso siete. Pollo y su jugo a la salsa. Fuego bajo, destapado. Seis minutos. Te aviso cuando toque meter el arroz.",
+      "voz_fin": "Apaga el fuego. Si la salsa sigue líquida, toca más uno dos veces. Si no, a emplatar.",
+      "consejo": "Listo si la salsa cubre la cuchara y el dado más gordo está blanco por dentro."
+    },
+    {
+      "titulo": "Emplata y guarda",
+      "detalle": "Mitad para hoy con arroz. La otra mitad al táper, sin arroz.",
+      "fuego": null,
+      "duracion_s": 0,
+      "estimado": "≈2 min",
+      "carriles": ["manos", "reposo"],
+      "mientras_tanto": "Cuando lo tengas, pon el aviso de 45 min para taparlo y congelarlo.",
+      "solo_esto": false,
+      "checklist": [
+        "Tu plato: mitad del curry + el arroz",
+        "Táper: la otra mitad, SIN arroz",
+        "Táper destapado enfriando en la encimera"
+      ],
+      "avisos": [],
+      "aviso_reposo_min": 45,
+      "voz_inicio": "Paso ocho. Emplata la mitad con el arroz. La otra mitad al táper, sin arroz, destapado para que enfríe. Luego pon el aviso de cuarenta y cinco minutos.",
+      "voz_fin": "Tapa el táper y mételo al congelador.",
+      "consejo": null
+    }
+  ],
+  "plan_gantt": [
+    {"desde_min": 0, "hasta_min": 3, "carril": "manos", "etiqueta": "Preparar", "paso": 0},
+    {"desde_min": 3, "hasta_min": 7, "carril": "fuego", "etiqueta": "Calentar", "paso": 1},
+    {"desde_min": 3, "hasta_min": 7, "carril": "manos", "etiqueta": "Cortar", "paso": 1},
+    {"desde_min": 7, "hasta_min": 11, "carril": "fuego", "etiqueta": "Dorar", "paso": 2},
+    {"desde_min": 8, "hasta_min": 10, "carril": "manos", "etiqueta": "Lavar", "paso": 2},
+    {"desde_min": 11, "hasta_min": 15, "carril": "fuego", "etiqueta": "Sofrito", "paso": 3},
+    {"desde_min": 15, "hasta_min": 15.5, "carril": "fuego", "etiqueta": "", "paso": 4},
+    {"desde_min": 15.5, "hasta_min": 16.5, "carril": "fuego", "etiqueta": "", "paso": 5},
+    {"desde_min": 16.5, "hasta_min": 22.5, "carril": "fuego", "etiqueta": "Salsa", "paso": 6},
+    {"desde_min": 19.5, "hasta_min": 22.5, "carril": "micro", "etiqueta": "Arroz", "paso": 6},
+    {"desde_min": 22.5, "hasta_min": 25, "carril": "manos", "etiqueta": "Plato", "paso": 7},
+    {"desde_min": 22.5, "hasta_min": 25, "carril": "reposo", "etiqueta": "Táper", "paso": 7}
+  ]
+}
