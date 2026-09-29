@@ -3,7 +3,8 @@
   const params = new URLSearchParams(location.search);
   const recipeId = params.get('id');
 
-  if (!recipeId) { $('loadError').textContent = 'Falta el parámetro ?id= en la URL.'; $('loadError').classList.remove('hidden'); return; }
+  Icons.hydrate();
+  if (!recipeId) { $('loadError').innerHTML = Icons.svg('warning', 20) + '<span>Falta el parámetro ?id= en la URL.</span>'; $('loadError').classList.remove('hidden'); return; }
 
   let recipe = null;
   let S = null;
@@ -17,7 +18,9 @@
 
   const save = () => Store.saveCookState(recipeId, S);
   const fmt = s => { const neg = s < 0; s = Math.abs(Math.round(s)); return (neg ? '+' : '') + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
-  const totalMin = () => (recipe.meta.tiempo_total_min) || (recipe.plan_gantt ? Math.max(...recipe.plan_gantt.map(p => p.hasta_min)) : 0);
+  // Escala del Gantt: lo que dura el plan de un tirón (sin tandas opcionales). Sin plan, el total declarado.
+  const totalMin = () => (recipe.plan_gantt && recipe.plan_gantt.length ? Math.max(...recipe.plan_gantt.map(p => p.hasta_min)) : (recipe.meta.tiempo_total_min || 0));
+  const voiceIcon = on => Icons.svg(on ? 'speaker-high' : 'speaker-x');
 
   function show(scr) { ['start', 'cook', 'plan'].forEach(x => $(x).classList.toggle('hidden', x !== scr)); }
 
@@ -35,8 +38,12 @@
     $('notasBox').classList.toggle('hidden', !notas.length);
     $('notasList').innerHTML = notas.map(n => `<p>${escapeHtml(n)}</p>`).join('');
 
-    $('ingList').innerHTML = (recipe.ingredientes || []).map(i =>
-      `<li><span>${escapeHtml(i.nombre)}</span><span>${escapeHtml(i.cantidad)}</span></li>`).join('');
+    let grupo = null;
+    $('ingList').innerHTML = (recipe.ingredientes || []).map(i => {
+      const head = i.grupo && i.grupo !== grupo ? `<li class="grp">${escapeHtml(i.grupo)}</li>` : '';
+      grupo = i.grupo || grupo;
+      return head + `<li><span>${escapeHtml(i.nombre)}</span><span>${escapeHtml(i.cantidad)}</span></li>`;
+    }).join('');
 
     renderGantt($('ganttStart'), recipe.plan_gantt, totalMin(), null);
 
@@ -65,9 +72,9 @@
     const st = recipe.pasos[S.step];
     $('prog').innerHTML = recipe.pasos.map((_, i) => `<i class="${i < S.step ? 'done' : i === S.step ? 'now' : ''}"></i>`).join('');
     $('meta').innerHTML = `<span class="stepn">Paso ${S.step + 1} de ${recipe.pasos.length}</span>` +
-      (st.fuego ? `<span class="tag" style="background:var(--fuego)">Fuego ${st.fuego.toLowerCase()}</span>` : '') +
-      (st.carriles || []).filter(l => l !== 'fuego').map(l => `<span class="tag" style="background:${LANES[l] ? LANES[l].c : 'var(--muted)'}">${LANES[l] ? LANES[l].n : l}</span>`).join('') +
-      (st.estimado ? `<span class="tag" style="background:var(--muted)">${escapeHtml(st.estimado)}</span>` : '');
+      (st.fuego ? `<span class="tag">Fuego ${escapeHtml(st.fuego.toLowerCase())}</span>` : '') +
+      (st.carriles || []).filter(l => l !== 'fuego').map(l => `<span class="tag">${LANES[l] ? LANES[l].n : escapeHtml(l)}</span>`).join('') +
+      (st.estimado ? `<span class="tag">${escapeHtml(st.estimado)}</span>` : '');
     $('title').textContent = st.titulo;
     $('detail').textContent = st.detalle || '';
     $('timerBox').classList.toggle('hidden', !st.duracion_s);
@@ -133,7 +140,7 @@
     $('digits').textContent = fmt(r);
     $('digits').classList.toggle('over', r < 0);
     $('tbar').style.width = Math.min(100, Math.max(0, el / st.duracion_s * 100)) + '%';
-    document.title = (r < 0 ? '⏰ ' : '') + fmt(r) + ' · ' + st.titulo;
+    document.title = fmt(r) + ' · ' + st.titulo;
 
     const lis = [...$('cues').children]; let nextMarked = false;
     (st.avisos || []).forEach((c) => {
@@ -143,7 +150,7 @@
         S.fired.push(k); save();
         const missed = el - c.a_los_s > 5;
         Voice.beep(2, 660); Voice.buzz([150, 80, 150]);
-        Voice.say((missed ? 'Atención, ' : '') + c.voz);
+        Voice.say((missed ? 'Atención, ' : '') + c.voz, c.a_los_s === 0);
       }
       const fired = S.fired.includes(k);
       li && li.classList.toggle('fired', fired);
@@ -209,12 +216,12 @@
   });
   WakeLock.onStatus(status => {
     const el = $('wl');
-    if (status === 'ok') { el.textContent = 'Pantalla fija ✓'; el.classList.add('ok'); }
+    if (status === 'ok') { el.innerHTML = Icons.svg('check-circle', 16) + 'Pantalla fija'; el.classList.add('ok'); }
     else { el.textContent = 'Pantalla: manual'; el.classList.remove('ok'); }
   });
 
   /* ---------- acciones ---------- */
-  function goStep(i) { S.step = i; startTimer(); save(); renderStep(); Voice.say(recipe.pasos[i].voz_inicio); }
+  function goStep(i) { S.step = i; startTimer(); save(); Voice.say(recipe.pasos[i].voz_inicio); renderStep(); }
   function begin() {
     Voice.unlock(); WakeLock.acquire();
     S.screen = 'cook'; S.started = true; show('cook'); goStep(0);
@@ -264,7 +271,7 @@
   };
   $('voiceBtn').onclick = () => {
     const prefs = Store.prefs(); prefs.voice = !prefs.voice; Store.savePrefs(prefs);
-    $('voiceBtn').textContent = prefs.voice ? '🔊' : '🔇';
+    $('voiceBtn').innerHTML = voiceIcon(prefs.voice);
     if (prefs.voice) Voice.say('Voz activada.'); else speechSynthesis && speechSynthesis.cancel();
   };
   $('expToggle').onchange = () => {
@@ -284,14 +291,16 @@
   (async function init() {
     try {
       recipe = await Recipe.load(recipeId);
+      Theme.applyRecipe(recipe.tema);
     } catch (e) {
-      $('loadError').textContent = 'No se pudo cargar la receta: ' + e.message;
+      $('loadError').innerHTML = Icons.svg('warning', 20) + '<span></span>';
+      $('loadError').lastChild.textContent = 'No se pudo cargar la receta: ' + e.message;
       $('loadError').classList.remove('hidden');
       return;
     }
     S = Store.cookState(recipeId, KEY_FALLBACK());
     const prefs = Store.prefs();
-    $('voiceBtn').textContent = prefs.voice ? '🔊' : '🔇';
+    $('voiceBtn').innerHTML = voiceIcon(prefs.voice);
     S.screen = 'start';
     renderStart();
     show('start');

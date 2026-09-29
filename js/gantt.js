@@ -1,9 +1,10 @@
-// Diagrama de carriles (fuego / manos / micro / reposo) a partir de plan_gantt.
+// Diagrama de carriles (fuego / manos / airfryer / micro / reposo) a partir de plan_gantt.
 const LANES = {
-  fuego: { n: 'Fuego', c: 'var(--fuego)' },
-  manos: { n: 'Manos', c: 'var(--manos)' },
-  micro: { n: 'Micro', c: 'var(--micro)' },
-  reposo: { n: 'Reposo', c: 'var(--reposo)' },
+  fuego: { n: 'Fuego', c: 'var(--l-fuego)', t: 'var(--t-fuego)' },
+  manos: { n: 'Manos', c: 'var(--l-manos)', t: 'var(--t-manos)' },
+  airfryer: { n: 'Airfryer', c: 'var(--l-airfryer)', t: 'var(--t-airfryer)' },
+  micro: { n: 'Micro', c: 'var(--l-micro)', t: 'var(--t-micro)' },
+  reposo: { n: 'Reposo', c: 'var(--l-reposo)', t: 'var(--t-reposo)' },
 };
 
 function renderGantt(el, plan, totalMin, currentStep) {
@@ -12,12 +13,12 @@ function renderGantt(el, plan, totalMin, currentStep) {
   const total = totalMin || Math.max(...plan.map(p => p.hasta_min));
   let h = '';
   for (const k of usedLanes) {
-    h += `<div class="lane"><span style="color:${LANES[k].c}">${LANES[k].n}</span><div class="track">`;
+    h += `<div class="lane"><span>${LANES[k].n}</span><div class="track">`;
     plan.filter(p => p.carril === k).forEach(p => {
       const cls = currentStep == null ? '' : (p.paso === currentStep ? 'now' : (p.paso < currentStep ? 'done' : ''));
       const left = p.desde_min / total * 100;
       const width = (p.hasta_min - p.desde_min) / total * 100;
-      h += `<div class="seg ${cls}" style="left:${left}%;width:${width}%;background:${LANES[k].c}">${p.etiqueta || ''}</div>`;
+      h += `<div class="seg ${cls}" style="left:${left}%;width:${width}%;background:${LANES[k].c};color:${LANES[k].t}">${p.etiqueta || ''}</div>`;
     });
     h += '</div></div>';
   }

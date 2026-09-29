@@ -1,0 +1,140 @@
+{
+  "id": "albondigas-rigatoni",
+  "meta": {
+    "titulo": "Albóndigas en salsa con rigatoni",
+    "raciones": 3,
+    "tiempo_total_min": 40,
+    "notas": [
+      "Salen unas 21 albóndigas: 7 por ración.",
+      "Material: Ninja Crispi (modo AIR FRY), sartén Monix de 28 cm para la salsa y la pota para la pasta.",
+      "Solo hay una pota: es para la pasta. La salsa NO va en ella.",
+      "Con una sola tanda en el Ninja son unos 30 min más el reparto. Si no caben todas, la segunda tanda suma 10 min."
+    ],
+    "reparto": {
+      "hoy": "1 ración con los 90 g de rigatoni recién hechos.",
+      "taper": "Las otras 2 raciones, en 2 tuppers: albóndigas con salsa SIN pasta, destapados hasta que enfríen; a los 45 min tapar y al congelador. Siempre tupper, nunca bolsa.",
+      "recalentar": [
+        "La noche antes: tupper del congelador a la nevera.",
+        "Albóndigas con salsa al micro 3-4 min, removiendo a la mitad.",
+        "La pasta de ese día se cuece en el momento."
+      ]
+    }
+  },
+  "tema": {"acento": "#B8321F", "acento_oscuro": "#E8664F", "superficie": "#FBF7F0"},
+  "ingredientes": [
+    {"grupo": "Albóndigas (salen unas 21)", "nombre": "Carne picada mixta cerdo-vacuno (descongelada)", "cantidad": "500 g"},
+    {"grupo": "Albóndigas (salen unas 21)", "nombre": "Huevo", "cantidad": "1"},
+    {"grupo": "Albóndigas (salen unas 21)", "nombre": "Pan rallado", "cantidad": "30 g"},
+    {"grupo": "Albóndigas (salen unas 21)", "nombre": "Leche semi", "cantidad": "2 cdas"},
+    {"grupo": "Albóndigas (salen unas 21)", "nombre": "Ajo troceado congelado", "cantidad": "1 cdta"},
+    {"grupo": "Albóndigas (salen unas 21)", "nombre": "Perejil seco", "cantidad": "al gusto"},
+    {"grupo": "Albóndigas (salen unas 21)", "nombre": "Sal y pimienta negra", "cantidad": "al gusto"},
+    {"grupo": "Salsa", "nombre": "Tomate triturado (bote de 800 g ya abierto)", "cantidad": "300 g"},
+    {"grupo": "Salsa", "nombre": "Cebolla troceada congelada", "cantidad": "2 cdas"},
+    {"grupo": "Salsa", "nombre": "Ajo troceado congelado", "cantidad": "1 cdta"},
+    {"grupo": "Salsa", "nombre": "Orégano y pimentón dulce", "cantidad": "al gusto"},
+    {"grupo": "Salsa", "nombre": "AOVE y sal", "cantidad": "al gusto"},
+    {"grupo": "Tu plato", "nombre": "Rigatoni Alberto Poiatti", "cantidad": "90 g"}
+  ],
+  "pasos": [
+    {
+      "titulo": "Prepara las albóndigas",
+      "detalle": "Lo primero: pota con agua y sal a fuego alto, tapada. Luego mezcla la carne con el huevo, el pan rallado, la leche, el ajo, el perejil, la sal y la pimienta, y haz 21 bolas del tamaño de una nuez.",
+      "fuego": "alto",
+      "duracion_s": 480,
+      "carriles": ["manos", "fuego"],
+      "mientras_tanto": "La pota es solo para la pasta. La salsa va en la sartén.",
+      "solo_esto": false,
+      "checklist": [
+        "¿Caben todas en una capa en el Ninja sin tocarse?"
+      ],
+      "avisos": [],
+      "voz_inicio": "Paso uno. Lo primero, la pota con agua y sal a fuego alto, tapada. Luego mezcla la carne con el huevo, el pan rallado, la leche, el ajo, el perejil, la sal y la pimienta. Haz veintiuna bolas del tamaño de una nuez. Ocho minutos.",
+      "voz_fin": "Ocho minutos. Bolas hechas. Mira si caben todas en el Ninja sin tocarse y toca hecho.",
+      "consejo": null
+    },
+    {
+      "titulo": "Albóndigas, tanda 1",
+      "detalle": "Ninja en AIR FRY a 200 °C, 10 min. Mientras, empieza la salsa en la sartén Monix.",
+      "fuego": "medio",
+      "duracion_s": 600,
+      "carriles": ["airfryer", "fuego"],
+      "mientras_tanto": "Si el agua ya hierve, bájala a fuego medio, tapada.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [
+        {"a_los_s": 0, "voz": "Sartén a fuego medio: aceite, cebolla y ajo.", "texto": "Sartén a fuego medio: AOVE, cebolla y ajo"},
+        {"a_los_s": 180, "voz": "Tomate, orégano, pimentón y sal. Fuego bajo.", "texto": "Tomate, orégano, pimentón y sal. Fuego bajo"},
+        {"a_los_s": 300, "voz": "Agita el Ninja.", "texto": "Agita el Ninja"}
+      ],
+      "voz_inicio": "Paso dos. Albóndigas al Ninja, modo AIR FRY, doscientos grados, diez minutos. Si el agua ya hierve, bájala a fuego medio y déjala tapada.",
+      "voz_fin": "Diez minutos. Albóndigas fuera del Ninja, a un plato. Toca hecho.",
+      "consejo": null
+    },
+    {
+      "titulo": "Tanda 2 (solo si no cupieron)",
+      "detalle": "Las albóndigas que faltan, al Ninja: AIR FRY a 200 °C, 10 min. Si cupieron todas, toca Hecho y sigue.",
+      "fuego": "mínimo",
+      "duracion_s": 600,
+      "carriles": ["airfryer"],
+      "mientras_tanto": "La salsa sigue en la sartén, a fuego mínimo.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [
+        {"a_los_s": 0, "voz": "Salsa a fuego mínimo.", "texto": "Salsa a fuego mínimo"},
+        {"a_los_s": 300, "voz": "Agita el Ninja.", "texto": "Agita"}
+      ],
+      "voz_inicio": "Paso tres. Si cupieron todas, pulsa Hecho y sigue. Si no, mete las que faltan en el Ninja, AIR FRY a doscientos grados, diez minutos.",
+      "voz_fin": "Diez minutos. Segunda tanda fuera. Toca hecho.",
+      "consejo": null
+    },
+    {
+      "titulo": "Albóndigas a la salsa y pasta",
+      "detalle": "A la vez: las albóndigas a la sartén con la salsa y los rigatoni a la pota con el agua hirviendo.",
+      "fuego": "medio",
+      "duracion_s": 720,
+      "carriles": ["fuego"],
+      "mientras_tanto": "Dos fuegos a la vez: sartén con la salsa, pota con la pasta.",
+      "solo_esto": false,
+      "checklist": [],
+      "avisos": [
+        {"a_los_s": 0, "voz": "Albóndigas a la sartén y rigatoni a la pota, a la vez.", "texto": "Albóndigas a la sartén y rigatoni a la pota"},
+        {"a_los_s": 360, "voz": "Remueve la pasta y mueve la sartén con cuidado.", "texto": "Remueve la pasta y mueve la sartén con cuidado"},
+        {"a_los_s": 540, "voz": "Si la salsa está muy espesa, dos cucharadas del agua de la pasta.", "texto": "Salsa espesa: 2 cucharadas del agua de la pasta"}
+      ],
+      "voz_inicio": "Paso cuatro. Albóndigas a la sartén con la salsa y los rigatoni a la pota, los dos a la vez. Doce minutos.",
+      "voz_fin": "Escurre la pasta.",
+      "consejo": "Mira el tiempo del paquete de rigatoni. Si pone más de 12 min, usa +1 min."
+    },
+    {
+      "titulo": "Reparto",
+      "detalle": "Tu plato y los dos tuppers. Los tuppers, destapados hasta que enfríen.",
+      "fuego": null,
+      "duracion_s": 0,
+      "estimado": "≈3 min",
+      "carriles": ["manos", "reposo"],
+      "mientras_tanto": "Cuando lo tengas, pon el aviso de 45 min para tapar los tuppers y congelarlos.",
+      "solo_esto": false,
+      "checklist": [
+        "Tu plato: 7 albóndigas + salsa + rigatoni",
+        "Tupper 1: 7 albóndigas con salsa",
+        "Tupper 2: 7 albóndigas con salsa",
+        "Tuppers destapados enfriando en la encimera, luego al congelador"
+      ],
+      "avisos": [],
+      "aviso_reposo_min": 45,
+      "voz_inicio": "Paso cinco. Tu plato: siete albóndigas con salsa y rigatoni. Después, dos tuppers con siete albóndigas y salsa cada uno, sin pasta, destapados para que enfríen. Luego pon el aviso de cuarenta y cinco minutos.",
+      "voz_fin": "Tapa los tuppers y al congelador.",
+      "consejo": null
+    }
+  ],
+  "plan_gantt": [
+    {"desde_min": 0, "hasta_min": 8, "carril": "manos", "etiqueta": "Preparar", "paso": 0},
+    {"desde_min": 0, "hasta_min": 8, "carril": "fuego", "etiqueta": "Agua", "paso": 0},
+    {"desde_min": 8, "hasta_min": 18, "carril": "airfryer", "etiqueta": "Albóndigas", "paso": 1},
+    {"desde_min": 8, "hasta_min": 18, "carril": "fuego", "etiqueta": "Salsa", "paso": 1},
+    {"desde_min": 18, "hasta_min": 30, "carril": "fuego", "etiqueta": "Sartén + pota", "paso": 3},
+    {"desde_min": 30, "hasta_min": 33, "carril": "manos", "etiqueta": "Plato", "paso": 4},
+    {"desde_min": 30, "hasta_min": 33, "carril": "reposo", "etiqueta": "Frío", "paso": 4}
+  ]
+}

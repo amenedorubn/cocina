@@ -1,6 +1,8 @@
 (function () {
   const $ = id => document.getElementById(id);
 
+  Theme.reset(); // la home siempre va con el tema neutro
+  Icons.hydrate();
   $('themeBtn').onclick = () => { Theme.cycle(); };
 
   function slug(s) {
@@ -14,6 +16,7 @@
     if (!recipe.meta || !recipe.meta.titulo) return 'Falta meta.titulo.';
     if (!Array.isArray(recipe.pasos) || !recipe.pasos.length) return 'Falta el array de pasos.';
     if (!Array.isArray(recipe.ingredientes)) return 'Falta el array de ingredientes.';
+    if (recipe.tema && typeof recipe.tema !== 'object') return 'El campo "tema" debe ser un objeto.';
     return null;
   }
 
@@ -30,7 +33,7 @@
     const custom = Store.customRecipes();
     return Object.values(custom).map(r => ({
       id: r.id, titulo: r.meta.titulo,
-      raciones: r.meta.raciones, tiempo_total_min: r.meta.tiempo_total_min,
+      raciones: r.meta.raciones, tiempo_total_min: r.meta.tiempo_total_min, tema: r.tema,
       source: 'custom',
     }));
   }
@@ -43,14 +46,18 @@
       el.innerHTML = '<li class="empty">Todavía no hay recetas. Importa una con el botón de abajo.</li>';
       return;
     }
-    el.innerHTML = all.map(r => `
+    el.innerHTML = all.map(r => {
+      const a = Theme.accents(r.tema);
+      const dot = a.l ? `style="--dot-l:${a.l};--dot-d:${a.d || a.l}"` : '';
+      return `
       <li>
-        <button class="card" data-id="${r.id}">
+        <button class="card" data-id="${escapeHtml(r.id)}" ${dot}>
           <span class="t">${escapeHtml(r.titulo)}</span>
           <span class="m">${r.raciones ? r.raciones + ' raciones · ' : ''}${r.tiempo_total_min ? r.tiempo_total_min + ' min' : ''}</span>
           ${r.source === 'custom' ? '<span class="tag">Importada</span>' : ''}
         </button>
-      </li>`).join('');
+      </li>`;
+    }).join('');
     [...el.querySelectorAll('.card')].forEach(btn => {
       btn.onclick = () => { location.href = `cocina.html?id=${encodeURIComponent(btn.dataset.id)}`; };
     });
@@ -80,7 +87,8 @@
 
   function showError(msg) {
     const el = $('importError');
-    el.textContent = msg;
+    el.innerHTML = Icons.svg('warning', 20) + '<span></span>';
+    el.lastChild.textContent = msg;
     el.classList.remove('hidden');
   }
 

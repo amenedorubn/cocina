@@ -14,9 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Preparar solo la app (sin tests, .git ni node_modules)
+        run: |
+          mkdir _site
+          cp -r index.html cocina.html app.css manifest.webmanifest sw.js js icons recetas _site/
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=cocina --branch=main
+          command: pages deploy _site --project-name=cocina --branch=main

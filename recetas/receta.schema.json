@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Receta de Copiloto Cocina",
+  "type": "object",
+  "required": ["id", "meta", "ingredientes", "pasos", "plan_gantt"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "meta": {
+      "type": "object",
+      "required": ["titulo", "raciones", "tiempo_total_min"],
+      "additionalProperties": false,
+      "properties": {
+        "titulo": { "type": "string", "minLength": 1 },
+        "raciones": { "type": "integer", "minimum": 1 },
+        "tiempo_total_min": { "type": "number", "exclusiveMinimum": 0 },
+        "notas": { "type": "array", "items": { "type": "string" } },
+        "reparto": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hoy": { "type": "string" },
+            "taper": { "type": "string" },
+            "dia_consumo": { "type": "string" },
+            "recalentar": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "tema": {
+      "description": "Color de la receta. Opcional; sin él, la receta usa el tema neutro de la app.",
+      "type": "object",
+      "required": ["acento", "acento_oscuro", "superficie"],
+      "additionalProperties": false,
+      "properties": {
+        "acento": { "$ref": "#/$defs/hex" },
+        "acento_oscuro": { "$ref": "#/$defs/hex" },
+        "superficie": { "$ref": "#/$defs/hex" }
+      }
+    },
+    "ingredientes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["nombre", "cantidad"],
+        "additionalProperties": false,
+        "properties": {
+          "grupo": { "type": "string" },
+          "nombre": { "type": "string", "minLength": 1 },
+          "cantidad": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "pasos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["titulo", "detalle", "fuego", "duracion_s", "carriles", "mientras_tanto", "solo_esto", "checklist", "avisos", "voz_inicio", "voz_fin", "consejo"],
+        "additionalProperties": false,
+        "properties": {
+          "titulo": { "type": "string", "minLength": 1 },
+          "detalle": { "type": "string" },
+          "fuego": { "type": ["string", "null"] },
+          "duracion_s": { "type": "integer", "minimum": 0 },
+          "estimado": { "type": "string" },
+          "carriles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/carril" } },
+          "mientras_tanto": { "type": ["string", "null"] },
+          "solo_esto": { "type": "boolean" },
+          "checklist": { "type": "array", "items": { "type": "string" } },
+          "avisos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["a_los_s", "voz", "texto"],
+              "additionalProperties": false,
+              "properties": {
+                "a_los_s": { "type": "integer", "minimum": 0 },
+                "voz": { "type": "string", "minLength": 1 },
+                "texto": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "aviso_reposo_min": { "type": "integer", "minimum": 1 },
+          "voz_inicio": { "type": "string", "minLength": 1 },
+          "voz_fin": { "type": ["string", "null"] },
+          "consejo": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "plan_gantt": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["desde_min", "hasta_min", "carril", "etiqueta", "paso"],
+        "additionalProperties": false,
+        "properties": {
+          "desde_min": { "type": "number", "minimum": 0 },
+          "hasta_min": { "type": "number", "exclusiveMinimum": 0 },
+          "carril": { "$ref": "#/$defs/carril" },
+          "etiqueta": { "type": "string" },
+          "paso": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "carril": { "enum": ["fuego", "manos", "airfryer", "micro", "reposo"] }
+  }
+}

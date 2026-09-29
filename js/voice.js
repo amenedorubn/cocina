@@ -41,11 +41,12 @@ const Voice = (() => {
     try { navigator.vibrate && navigator.vibrate(pattern); } catch (e) {}
   }
 
-  function say(text) {
+  // queue=true no corta lo que esté sonando (p. ej. un aviso a 0:00 justo después de la voz de inicio del paso).
+  function say(text, queue = false) {
     const prefs = Store.prefs();
     if (!prefs.voice || !('speechSynthesis' in window) || !text) return;
     try {
-      speechSynthesis.cancel();
+      if (!queue) speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
       u.lang = 'es-ES';
       if (esVoice) u.voice = esVoice;

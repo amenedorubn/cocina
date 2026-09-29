@@ -1,3 +1,22 @@
 [
-  { "id": "curry-pollo", "titulo": "Curry de pollo", "raciones": 2, "tiempo_total_min": 25 }
+  { "id": "curry-pollo",
+    "titulo": "Curry de pollo",
+    "raciones": 2,
+    "tiempo_total_min": 25,
+    "tema": {
+      "acento": "#8B6909",
+      "acento_oscuro": "#E9B00F",
+      "superficie": "#FBF6E6"
+    }
+  },
+  { "id": "albondigas-rigatoni",
+    "titulo": "Albóndigas en salsa con rigatoni",
+    "raciones": 3,
+    "tiempo_total_min": 40,
+    "tema": {
+      "acento": "#B8321F",
+      "acento_oscuro": "#E8664F",
+      "superficie": "#FBF7F0"
+    }
+  }
 ]

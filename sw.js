@@ -1,4 +1,4 @@
-const CACHE = 'cocina-v3';
+const CACHE = 'cocina-v4';
 const SHELL = [
   './',
   'index.html',
@@ -6,6 +6,8 @@ const SHELL = [
   'app.css',
   'manifest.webmanifest',
   'js/store.js',
+  'js/icons.js',
+  'js/contrast.js',
   'js/theme.js',
   'js/home.js',
   'js/recipe.js',
@@ -17,6 +19,7 @@ const SHELL = [
   'js/sw-register.js',
   'recetas/index.json',
   'recetas/curry-pollo.json',
+  'recetas/albondigas-rigatoni.json',
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/icon-192-maskable.png',
