@@ -6,17 +6,17 @@
     "tiempo_total_min": 40,
     "notas": [
       "Salen unas 21 albóndigas: 7 por ración.",
+      "Pasta y arroz: 180 g de rigatoni (2 raciones de 90 g: tu plato y el tupper 1) y 1 bolsa de arroz de microondas para el tupper 2.",
       "Material: Ninja Crispi (modo AIR FRY), sartén Monix de 28 cm para la salsa y la pota para la pasta.",
       "Solo hay una pota: es para la pasta. La salsa NO va en ella.",
       "Las 21 albóndigas no caben en una capa en el Ninja: van en 2 tandas (11 + 10) de 10 min cada una."
     ],
     "reparto": {
-      "hoy": "1 ración con los 90 g de rigatoni recién hechos.",
-      "taper": "Las otras 2 raciones, en 2 tuppers: albóndigas con salsa SIN pasta, destapados hasta que enfríen; a los 45 min tapar y al congelador. Siempre tupper, nunca bolsa.",
+      "hoy": "7 albóndigas + 1/3 de la salsa + 90 g de rigatoni recién hechos.",
+      "taper": "Tupper 1: 7 albóndigas + 1/3 de la salsa + 90 g de rigatoni. Tupper 2: 7 albóndigas + 1/3 de la salsa + el arroz. Destapados hasta que enfríen; a los 45 min tapar y al congelador. Siempre tupper, nunca bolsa.",
       "recalentar": [
         "La noche antes: tupper del congelador a la nevera.",
-        "Albóndigas con salsa al micro 3-4 min, removiendo a la mitad.",
-        "La pasta de ese día se cuece en el momento."
+        "Al micro 3-4 min, removiendo a la mitad. Si queda espeso, un chorrito de agua."
       ]
     }
   },
@@ -29,12 +29,13 @@
     {"grupo": "Albóndigas (salen unas 21)", "nombre": "Ajo troceado congelado", "cantidad": "1 cdta"},
     {"grupo": "Albóndigas (salen unas 21)", "nombre": "Perejil seco", "cantidad": "al gusto"},
     {"grupo": "Albóndigas (salen unas 21)", "nombre": "Sal y pimienta negra", "cantidad": "al gusto"},
-    {"grupo": "Salsa", "nombre": "Tomate triturado (bote de 800 g ya abierto)", "cantidad": "300 g"},
-    {"grupo": "Salsa", "nombre": "Cebolla troceada congelada", "cantidad": "2 cdas"},
+    {"grupo": "Salsa", "nombre": "Tomate triturado (bote de 800 g ya abierto)", "cantidad": "600 g"},
+    {"grupo": "Salsa", "nombre": "Cebolla troceada congelada", "cantidad": "3 cdas"},
     {"grupo": "Salsa", "nombre": "Ajo troceado congelado", "cantidad": "1 cdta"},
-    {"grupo": "Salsa", "nombre": "Orégano y pimentón dulce", "cantidad": "al gusto"},
+    {"grupo": "Salsa", "nombre": "Orégano y pimentón dulce", "cantidad": "el doble (al gusto)"},
     {"grupo": "Salsa", "nombre": "AOVE y sal", "cantidad": "al gusto"},
-    {"grupo": "Tu plato", "nombre": "Rigatoni Alberto Poiatti", "cantidad": "90 g"}
+    {"grupo": "Pasta y arroz", "nombre": "Rigatoni Alberto Poiatti (2 raciones de 90 g)", "cantidad": "180 g"},
+    {"grupo": "Pasta y arroz", "nombre": "Arroz de microondas (3 min)", "cantidad": "1 bolsa"}
   ],
   "pasos": [
     {
@@ -93,26 +94,27 @@
     },
     {
       "titulo": "Albóndigas a la salsa y pasta",
-      "detalle": "A la vez: las albóndigas a la sartén con la salsa y los rigatoni a la pota con el agua hirviendo.",
+      "detalle": "A la vez: las albóndigas a la sartén con la salsa y los 180 g de rigatoni a la pota con el agua hirviendo. A los 9:00, el arroz al micro.",
       "fuego": "medio",
       "duracion_s": 720,
-      "usa": [12],
-      "carriles": ["fuego"],
-      "mientras_tanto": "Dos fuegos a la vez: sartén con la salsa, pota con la pasta.",
+      "usa": [12, 13],
+      "carriles": ["fuego", "micro"],
+      "mientras_tanto": "Dos fuegos a la vez: sartén con la salsa, pota con la pasta. El arroz entra al micro a los 9:00.",
       "solo_esto": false,
       "checklist": [],
       "avisos": [
         {"a_los_s": 0, "voz": "Albóndigas a la sartén y rigatoni a la pota, a la vez.", "texto": "Albóndigas a la sartén y rigatoni a la pota"},
         {"a_los_s": 360, "voz": "Remueve la pasta y mueve la sartén con cuidado.", "texto": "Remueve la pasta y mueve la sartén con cuidado"},
-        {"a_los_s": 540, "voz": "Si la salsa está muy espesa, dos cucharadas del agua de la pasta.", "texto": "Salsa espesa: 2 cucharadas del agua de la pasta"}
+        {"a_los_s": 540, "voz": "Arroz al microondas, tres minutos.", "texto": "Arroz al microondas, 3 minutos"},
+        {"a_los_s": 600, "voz": "Si la salsa espesa demasiado, dos cucharadas del agua de la pasta.", "texto": "Si espesa demasiado: 2 cucharadas del agua de la pasta"}
       ],
-      "voz_inicio": "Paso cuatro. Albóndigas a la sartén con la salsa y los rigatoni a la pota, los dos a la vez. Doce minutos.",
+      "voz_inicio": "Paso cuatro. Albóndigas a la sartén con la salsa y los ciento ochenta gramos de rigatoni a la pota, los dos a la vez. Doce minutos. A los nueve minutos te aviso para el arroz.",
       "voz_fin": "Escurre la pasta.",
       "consejo": "Mira el tiempo del paquete de rigatoni. Si pone más de 12 min, usa +1 min."
     },
     {
       "titulo": "Reparto",
-      "detalle": "Tu plato y los dos tuppers. Los tuppers, destapados hasta que enfríen.",
+      "detalle": "Tu plato y los dos tuppers, con un tercio de la salsa y siete albóndigas cada uno. Los tuppers, destapados hasta que enfríen.",
       "fuego": null,
       "duracion_s": 0,
       "usa": [],
@@ -121,14 +123,14 @@
       "mientras_tanto": "Cuando lo tengas, pon el aviso de 45 min para tapar los tuppers y congelarlos.",
       "solo_esto": false,
       "checklist": [
-        "Tu plato: 7 albóndigas + salsa + rigatoni",
-        "Tupper 1: 7 albóndigas con salsa",
-        "Tupper 2: 7 albóndigas con salsa",
-        "Tuppers destapados enfriando en la encimera, luego al congelador"
+        "Tu plato: 7 albóndigas + 1/3 de salsa + 90 g de rigatoni",
+        "Tupper 1: 7 albóndigas + 1/3 de salsa + 90 g de rigatoni",
+        "Tupper 2: 7 albóndigas + 1/3 de salsa + el arroz",
+        "Tuppers destapados enfriando; a los 45 min, tapa y al congelador"
       ],
       "avisos": [],
       "aviso_reposo_min": 45,
-      "voz_inicio": "Paso cinco. Tu plato: siete albóndigas con salsa y rigatoni. Después, dos tuppers con siete albóndigas y salsa cada uno, sin pasta, destapados para que enfríen. Luego pon el aviso de cuarenta y cinco minutos.",
+      "voz_inicio": "Paso cinco. Tu plato: siete albóndigas, un tercio de la salsa y noventa gramos de rigatoni. Tupper uno: lo mismo, con rigatoni. Tupper dos: siete albóndigas, un tercio de la salsa y el arroz. Los tuppers, destapados para que enfríen. Luego pon el aviso de cuarenta y cinco minutos.",
       "voz_fin": "Tapa los tuppers y al congelador.",
       "consejo": null
     }
@@ -141,6 +143,7 @@
     {"desde_min": 18, "hasta_min": 28, "carril": "airfryer", "etiqueta": "Tanda 2", "paso": 2},
     {"desde_min": 18, "hasta_min": 28, "carril": "fuego", "etiqueta": "Salsa", "paso": 2},
     {"desde_min": 28, "hasta_min": 40, "carril": "fuego", "etiqueta": "Sartén + pota", "paso": 3},
+    {"desde_min": 37, "hasta_min": 40, "carril": "micro", "etiqueta": "Arroz", "paso": 3},
     {"desde_min": 40, "hasta_min": 43, "carril": "manos", "etiqueta": "Plato", "paso": 4},
     {"desde_min": 40, "hasta_min": 43, "carril": "reposo", "etiqueta": "Frío", "paso": 4}
   ]

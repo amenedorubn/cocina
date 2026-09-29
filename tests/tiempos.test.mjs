@@ -36,9 +36,14 @@ test('albóndigas · paso 3 (tanda 2, obligatoria): 10 min y avisos a 0:00 y 5:0
   assert.doesNotMatch(p3.voz_inicio + p3.detalle, /cupieron|solo si/i);
 });
 
-test('albóndigas · paso 4: 12 min y avisos a 0:00, 6:00 y 9:00', () => {
+test('albóndigas · paso 4: 12 min; avisos a 0:00, 6:00, 9:00 (arroz al micro) y 10:00 (agua, solo si espesa)', () => {
   assert.equal(p4.duracion_s, 720);
-  assert.deepEqual(p4.avisos.map(a => a.a_los_s), [0, 360, 540]);
+  assert.deepEqual(p4.avisos.map(a => a.a_los_s), [0, 360, 540, 600]);
+  const arroz = p4.avisos.find(a => a.a_los_s === p4.duracion_s - 180);
+  assert.match(arroz.texto, /Arroz al microondas, 3 minutos/);
+  assert.ok(p4.carriles.includes('micro'));
+  assert.match(p4.avisos[3].texto, /Si espesa demasiado/);
+  assert.equal(new Set(p4.avisos.map(a => a.a_los_s)).size, p4.avisos.length);
   assert.match(p4.voz_fin, /Escurre la pasta/);
   assert.match(p4.consejo, /más de 12 min, usa \+1 min/);
 });
@@ -60,6 +65,9 @@ test('albóndigas · el gantt (2 tandas) dura 40 min más el reparto y cuadra co
   assert.equal(seg(3, 'fuego').desde_min, seg(2, 'airfryer').hasta_min);
   assert.equal(seg(3, 'fuego').hasta_min, 40);
   assert.equal(seg(4, 'manos').desde_min, 40);
+  // El arroz entra al micro a falta de 3 min y acaba con el paso (28 + 9 = 37 → 40).
+  const micro = seg(3, 'micro');
+  assert.deepEqual([micro.desde_min, micro.hasta_min], [28 + 540 / 60, 40]);
   // 8+10+10+12 = 40 min de cocina.
   const total = albondigas.pasos.reduce((a, p) => a + p.duracion_s, 0) / 60;
   assert.equal(total, albondigas.meta.tiempo_total_min);
