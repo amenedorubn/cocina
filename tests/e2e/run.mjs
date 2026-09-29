@@ -15,7 +15,11 @@ function serve() {
   return new Promise(resolve => {
     const srv = http.createServer((req, res) => {
       let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+      const qs = new URL(req.url, 'http://x').search;
+      if (p.endsWith('/index.html')) { res.writeHead(308, { location: p.slice(0, -10) + qs }); res.end(); return; }
+      if (p.endsWith('.html')) { res.writeHead(308, { location: p.slice(0, -5) + qs }); res.end(); return; }
       if (p.endsWith('/')) p += 'index.html';
+      else if (!path.extname(p)) p += '.html';
       const f = path.join(ROOT, p);
       if (!f.startsWith(ROOT) || !existsSync(f)) { res.writeHead(404); res.end('no'); return; }
       res.writeHead(200, { 'content-type': TYPES[path.extname(f)] || 'application/octet-stream' });
@@ -229,7 +233,32 @@ try {
   }
 } finally {
   await browser.close();
-  if (srv) srv.close();
 }
+// Con service worker y URLs limpias (como en Cloudflare Pages): ir atrás y offline.
+{
+  console.log("== service worker + redirecciones tipo Cloudflare ==");
+  const browser2 = await chromium.launch();
+  const ctx = await browser2.newContext({ viewport: { width: 390, height: 844 } });
+  const page = await ctx.newPage();
+  await page.goto(base); await page.waitForSelector('.card');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload(); await page.waitForSelector('.card');
+  await check('el SW controla la página', async () => assert.ok(await page.evaluate(() => !!navigator.serviceWorker.controller)));
+  await page.click('.card[data-id="curry-pollo"]'); await page.waitForSelector('#start:not(.hidden)');
+  await page.goBack(); 
+  await check('gesto atrás desde una receta vuelve a la home', async () => { await page.waitForSelector('.card', { timeout: 5000 }); });
+  await page.click('.card[data-id="curry-pollo"]'); await page.waitForSelector('#start:not(.hidden)');
+  await page.click('a[aria-label="Volver al inicio"]');
+  await check('botón ← de la receta vuelve a la home', async () => { await page.waitForSelector('.card', { timeout: 5000 }); });
+  await page.goto(base + 'index.html');
+  await check('/index.html (redirigida) carga desde la caché sin ERR_FAILED', async () => { await page.waitForSelector('.card', { timeout: 5000 }); });
+  await ctx.setOffline(true);
+  await page.goto(base + 'cocina.html?id=albondigas-rigatoni');
+  await check('offline: la receta nueva abre', async () => { await page.waitForSelector('#start:not(.hidden)', { timeout: 5000 }); });
+  await page.goto(base);
+  await check('offline: la home abre', async () => { await page.waitForSelector('.card', { timeout: 5000 }); });
+  await browser2.close();
+}
+if (srv) srv.close();
 console.log(failures ? `\n${failures} comprobación(es) fallida(s)` : '\nE2E completo: todo en verde');
 process.exit(failures ? 1 : 0);
