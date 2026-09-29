@@ -64,6 +64,7 @@
           "detalle": { "type": "string" },
           "fuego": { "type": ["string", "null"] },
           "duracion_s": { "type": "integer", "minimum": 0 },
+          "usa": { "description": "Posiciones (base 0) en \"ingredientes\" que se usan en este paso; se muestran con su cantidad.", "type": "array", "uniqueItems": true, "items": { "type": "integer", "minimum": 0 } },
           "estimado": { "type": "string" },
           "carriles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/carril" } },
           "mientras_tanto": { "type": ["string", "null"] },

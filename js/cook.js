@@ -77,6 +77,10 @@
       (st.estimado ? `<span class="tag">${escapeHtml(st.estimado)}</span>` : '');
     $('title').textContent = st.titulo;
     $('detail').textContent = st.detalle || '';
+    const usa = (st.usa || []).map(i => (recipe.ingredientes || [])[i]).filter(Boolean);
+    $('usa').innerHTML = usa.map(i => `<li><span>${escapeHtml(i.nombre)}</span><b>${escapeHtml(i.cantidad)}</b></li>`).join('');
+    $('usa').classList.toggle('hidden', !usa.length);
+    $('usa').classList.toggle('many', usa.length > 4);
     $('timerBox').classList.toggle('hidden', !st.duracion_s);
     $('cues').innerHTML = (st.avisos || []).map(c => `<li data-at="${c.a_los_s}"><b>${fmt(st.duracion_s - c.a_los_s)}</b>${escapeHtml(c.texto || '')}</li>`).join('');
     const ch = st.checklist || [];

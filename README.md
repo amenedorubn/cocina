@@ -27,7 +27,7 @@ instalarla ahí. Cloudflare Pages tiene origen propio y evita ese choque.
 
 ## Versión y caché
 
-Versión de la app: `package.json` (1.2.1). El service worker usa `cocina-vN` (`sw.js`): **súbelo cada vez que cambie un archivo del shell o una receta**, o el móvil seguirá con la copia vieja. El SW sirve de caché y revalida en segundo plano: tras publicar, hay que abrir la app 2 veces (la primera descarga lo nuevo, la segunda ya lo usa).
+Versión de la app: `package.json` (1.3.0). El service worker usa `cocina-vN` (`sw.js`): **súbelo cada vez que cambie un archivo del shell o una receta**, o el móvil seguirá con la copia vieja. El SW sirve de caché y revalida en segundo plano: tras publicar, hay que abrir la app 2 veces (la primera descarga lo nuevo, la segunda ya lo usa).
 
 ## Tests
 
@@ -78,6 +78,7 @@ manifest.webmanifest
     "estimado": "≈3 min",          // solo si duracion_s es 0
     "carriles": ["fuego", "manos"], // fuego | manos | airfryer | micro | reposo
     "mientras_tanto": "...",
+    "usa": [0, 3],                  // opcional: posiciones en "ingredientes" que se ven (con cantidad) en ese paso
     "solo_esto": false,
     "checklist": ["..."],
     "avisos": [{ "a_los_s": 120, "voz": "...", "texto": "..." }],

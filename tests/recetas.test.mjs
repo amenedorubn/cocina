@@ -30,9 +30,16 @@ for (const { file, recipe } of recipes) {
   });
 }
 
+for (const { file, recipe } of recipes) {
+  test(`${file}: «usa» apunta a ingredientes que existen`, () => {
+    recipe.pasos.forEach((p, i) => (p.usa || []).forEach(k => assert.ok(recipe.ingredientes[k], `paso ${i + 1}: ingrediente ${k} no existe`)));
+  });
+}
+
 test('curry: sigue cargando igual que antes (solo se le añade "tema")', () => {
   const before = readJson('tests/fixtures/curry-pollo.baseline.json');
   const { tema, ...rest } = readJson('recetas/curry-pollo.json');
+  rest.pasos = rest.pasos.map(({ usa, ...p }) => p); // 'usa' (ingredientes por paso) también es nuevo
   assert.deepEqual(rest, before);
   assert.ok(tema, 'el curry debe llevar su tema');
 });

@@ -43,7 +43,7 @@ a{color:inherit}
 .hidden{display:none!important}
 
 .bar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.bar h1{font-size:16px;font-weight:800;margin:0;flex:1;letter-spacing:.01em}
+.bar h1{font-size:14px;line-height:1.15;font-weight:800;margin:0;flex:1;letter-spacing:.01em}
 .pill{font-size:13px;font-weight:700;padding:6px 10px;border-radius:999px;background:var(--surface)}
 .pill.ok{background:var(--ink);color:var(--bg)}
 .pill svg{vertical-align:-3px;margin-right:4px}
@@ -104,8 +104,11 @@ textarea{width:100%;min-height:160px;border-radius:14px;border:2px solid var(--s
 .stepn{font-weight:800;color:var(--muted);font-size:13px}
 .title{font-weight:900;font-size:clamp(24px,7vw,30px);line-height:1.05;margin:2px 0 6px}
 .detail{font-size:15px;font-weight:600;margin:0 0 8px}
+.usa{list-style:none;margin:0 0 8px;padding:8px 12px;background:var(--card);border-radius:12px;display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;font-size:12px;line-height:1.25}
+.usa li{display:flex;justify-content:space-between;gap:6px}
+.usa b{font-size:12px;font-weight:800;white-space:nowrap}
 .timer{background:var(--card);border-radius:18px;padding:6px 14px 10px;margin-bottom:8px;text-align:center}
-.digits{font-weight:900;font-size:clamp(56px,19vw,80px);line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.digits{font-weight:900;font-size:clamp(48px,16vw,64px);line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .digits.over{color:var(--acc)}
 .tbar{height:8px;border-radius:5px;background:color-mix(in srgb,var(--ink) 15%,transparent);overflow:hidden;margin-top:6px}
 .tbar i{display:block;height:100%;width:0;background:var(--ink);border-radius:5px}
