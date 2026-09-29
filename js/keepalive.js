@@ -6,7 +6,7 @@ const KeepAlive = (() => {
   let audioEl = null;
   let running = false;
 
-  function buildQuietLoopDataUri(seconds = 2, sampleRate = 8000, freq = 220, amplitude = 0.02) {
+  function buildQuietLoopDataUri(seconds = 2, sampleRate = 8000, freq = 40, amplitude = 0.004) {
     const n = seconds * sampleRate;
     const bytesPerSample = 2;
     const blockAlign = bytesPerSample;
@@ -38,14 +38,15 @@ const KeepAlive = (() => {
     if (!audioEl) {
       audioEl = new Audio(buildQuietLoopDataUri());
       audioEl.loop = true;
+      audioEl.volume = 0.1; // casi mudo: solo sirve para que Chrome no duerma la página
       audioEl.setAttribute('playsinline', '');
     }
     audioEl.play().catch(() => {});
     if ('mediaSession' in navigator) {
       try {
         navigator.mediaSession.metadata = new MediaMetadata({
-          title: recipeTitle || 'Cocinando',
-          artist: 'Copiloto Cocina',
+          title: 'Temporizador de cocina',
+          artist: recipeTitle || 'Copiloto Cocina',
         });
         navigator.mediaSession.playbackState = 'playing';
         navigator.mediaSession.setActionHandler('play', () => audioEl.play().catch(() => {}));

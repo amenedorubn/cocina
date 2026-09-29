@@ -135,7 +135,7 @@ try {
     await shot('04-albondigas-cocina-paso1');
     await check('paso 1: objetivos táctiles ≥ 44 px', async () => assert.deepEqual(await smallTargets(page), []));
     await page.click('#doneBtn');
-    await page.waitForFunction(() => document.getElementById('title').textContent.includes('tanda 1'));
+    await page.waitForFunction(() => document.getElementById('title').textContent.includes('tanda 1 de 2'));
     const fired = () => page.$$eval('#cues li.fired', l => l.length);
     const state = () => page.locator('#tstate').textContent();
     const DONE = 'Tiempo cumplido · toca Hecho';
@@ -153,8 +153,13 @@ try {
     await check('paso 2: a 10:01 termina (tiempo cumplido)', async () => assert.equal(await state(), DONE));
     await shot('06-albondigas-paso2-fin');
     await page.click('#doneBtn');
-    await page.waitForFunction(() => document.getElementById('title').textContent.includes('Tanda 2'));
-    await page.click('#doneBtn'); // cupieron todas: se salta la tanda 2
+    await page.waitForFunction(() => document.getElementById('title').textContent.includes('tanda 2 de 2'));
+    await check('paso 3 (tanda 2): aviso de 0:00 al empezar', async () => assert.equal(await fired(), 1));
+    await page.clock.runFor(301 * 1000);
+    await check('paso 3: a 5:01 salta "Agita"', async () => assert.equal(await fired(), 2));
+    await page.clock.runFor(300 * 1000);
+    await check('paso 3: a 10:01 termina', async () => assert.equal(await state(), DONE));
+    await page.click('#doneBtn');
     await page.waitForFunction(() => document.getElementById('title').textContent.includes('pasta'));
     await check('paso 4: aviso de 0:00 al empezar', async () => assert.equal(await fired(), 1));
     await page.clock.runFor(361 * 1000);
@@ -202,7 +207,24 @@ try {
     await shot('12-curry-cocina-paso1');
     await check('curry: 8 pasos en modo cocina', async () => assert.equal(await page.locator('#prog i').count(), 8));
 
-    await check('sin errores de consola/JS', async () => assert.deepEqual(errors, []));
+    // Modo cocina a pantalla completa: ningún paso de ninguna receta necesita scroll.
+    for (const id of Object.keys(RECIPES)) {
+      await page.goto(base + 'cocina.html?id=' + id); await page.waitForSelector('#start:not(.hidden)');
+      await page.evaluate(() => localStorage.clear()); await page.reload(); await page.waitForSelector('#start:not(.hidden)');
+      await page.click('#go'); await page.waitForSelector('#cook:not(.hidden)');
+      const n = await page.locator('#prog i').count();
+      for (let i = 0; i < n; i++) {
+        const title = await page.locator('#title').textContent();
+        await check(`${id} paso ${i + 1}/${n} «${title}»: cabe sin scroll`, async () => {
+          const m = await page.evaluate(() => ({ sh: document.documentElement.scrollHeight, ih: window.innerHeight }));
+          assert.ok(m.sh <= m.ih, `scrollHeight ${m.sh} > ${m.ih}`);
+        });
+        if (i === 0 && id === 'albondigas-rigatoni') await shot('13-albondigas-paso1-sin-scroll');
+        if (i < n - 1) await page.click('#doneBtn');
+      }
+    }
+
+        await check('sin errores de consola/JS', async () => assert.deepEqual(errors, []));
     await ctx.close();
   }
 } finally {

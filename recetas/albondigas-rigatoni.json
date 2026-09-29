@@ -8,7 +8,7 @@
       "Salen unas 21 albóndigas: 7 por ración.",
       "Material: Ninja Crispi (modo AIR FRY), sartén Monix de 28 cm para la salsa y la pota para la pasta.",
       "Solo hay una pota: es para la pasta. La salsa NO va en ella.",
-      "Con una sola tanda en el Ninja son unos 30 min más el reparto. Si no caben todas, la segunda tanda suma 10 min."
+      "Las 21 albóndigas no caben en una capa en el Ninja: van en 2 tandas (11 + 10) de 10 min cada una."
     ],
     "reparto": {
       "hoy": "1 ración con los 90 g de rigatoni recién hechos.",
@@ -46,16 +46,16 @@
       "mientras_tanto": "La pota es solo para la pasta. La salsa va en la sartén.",
       "solo_esto": false,
       "checklist": [
-        "¿Caben todas en una capa en el Ninja sin tocarse?"
+        "Dos grupos: 11 y 10 bolas, para meterlas en el Ninja en una capa y sin tocarse"
       ],
       "avisos": [],
       "voz_inicio": "Paso uno. Lo primero, la pota con agua y sal a fuego alto, tapada. Luego mezcla la carne con el huevo, el pan rallado, la leche, el ajo, el perejil, la sal y la pimienta. Haz veintiuna bolas del tamaño de una nuez. Ocho minutos.",
-      "voz_fin": "Ocho minutos. Bolas hechas. Mira si caben todas en el Ninja sin tocarse y toca hecho.",
+      "voz_fin": "Ocho minutos. Bolas hechas. Sepáralas en dos grupos, once y diez, y toca hecho.",
       "consejo": null
     },
     {
-      "titulo": "Albóndigas, tanda 1",
-      "detalle": "Ninja en AIR FRY a 200 °C, 10 min. Mientras, empieza la salsa en la sartén Monix.",
+      "titulo": "Albóndigas, tanda 1 de 2",
+      "detalle": "11 albóndigas al Ninja en AIR FRY a 200 °C, 10 min. Mientras, empieza la salsa en la sartén Monix.",
       "fuego": "medio",
       "duracion_s": 600,
       "carriles": ["airfryer", "fuego"],
@@ -67,16 +67,16 @@
         {"a_los_s": 180, "voz": "Tomate, orégano, pimentón y sal. Fuego bajo.", "texto": "Tomate, orégano, pimentón y sal. Fuego bajo"},
         {"a_los_s": 300, "voz": "Agita el Ninja.", "texto": "Agita el Ninja"}
       ],
-      "voz_inicio": "Paso dos. Albóndigas al Ninja, modo AIR FRY, doscientos grados, diez minutos. Si el agua ya hierve, bájala a fuego medio y déjala tapada.",
-      "voz_fin": "Diez minutos. Albóndigas fuera del Ninja, a un plato. Toca hecho.",
+      "voz_inicio": "Paso dos. Primera tanda: once albóndigas al Ninja, modo AIR FRY, doscientos grados, diez minutos. Si el agua ya hierve, bájala a fuego medio y déjala tapada.",
+      "voz_fin": "Diez minutos. Primera tanda fuera del Ninja, a un plato. Toca hecho.",
       "consejo": null
     },
     {
-      "titulo": "Tanda 2 (solo si no cupieron)",
-      "detalle": "Las albóndigas que faltan, al Ninja: AIR FRY a 200 °C, 10 min. Si cupieron todas, toca Hecho y sigue.",
+      "titulo": "Albóndigas, tanda 2 de 2",
+      "detalle": "Las otras 10 albóndigas al Ninja: AIR FRY a 200 °C, 10 min.",
       "fuego": "mínimo",
       "duracion_s": 600,
-      "carriles": ["airfryer"],
+      "carriles": ["airfryer", "fuego"],
       "mientras_tanto": "La salsa sigue en la sartén, a fuego mínimo.",
       "solo_esto": false,
       "checklist": [],
@@ -84,7 +84,7 @@
         {"a_los_s": 0, "voz": "Salsa a fuego mínimo.", "texto": "Salsa a fuego mínimo"},
         {"a_los_s": 300, "voz": "Agita el Ninja.", "texto": "Agita"}
       ],
-      "voz_inicio": "Paso tres. Si cupieron todas, pulsa Hecho y sigue. Si no, mete las que faltan en el Ninja, AIR FRY a doscientos grados, diez minutos.",
+      "voz_inicio": "Paso tres. Segunda tanda: las otras diez albóndigas al Ninja, AIR FRY a doscientos grados, diez minutos.",
       "voz_fin": "Diez minutos. Segunda tanda fuera. Toca hecho.",
       "consejo": null
     },
@@ -131,10 +131,12 @@
   "plan_gantt": [
     {"desde_min": 0, "hasta_min": 8, "carril": "manos", "etiqueta": "Preparar", "paso": 0},
     {"desde_min": 0, "hasta_min": 8, "carril": "fuego", "etiqueta": "Agua", "paso": 0},
-    {"desde_min": 8, "hasta_min": 18, "carril": "airfryer", "etiqueta": "Albóndigas", "paso": 1},
+    {"desde_min": 8, "hasta_min": 18, "carril": "airfryer", "etiqueta": "Tanda 1", "paso": 1},
     {"desde_min": 8, "hasta_min": 18, "carril": "fuego", "etiqueta": "Salsa", "paso": 1},
-    {"desde_min": 18, "hasta_min": 30, "carril": "fuego", "etiqueta": "Sartén + pota", "paso": 3},
-    {"desde_min": 30, "hasta_min": 33, "carril": "manos", "etiqueta": "Plato", "paso": 4},
-    {"desde_min": 30, "hasta_min": 33, "carril": "reposo", "etiqueta": "Frío", "paso": 4}
+    {"desde_min": 18, "hasta_min": 28, "carril": "airfryer", "etiqueta": "Tanda 2", "paso": 2},
+    {"desde_min": 18, "hasta_min": 28, "carril": "fuego", "etiqueta": "Salsa", "paso": 2},
+    {"desde_min": 28, "hasta_min": 40, "carril": "fuego", "etiqueta": "Sartén + pota", "paso": 3},
+    {"desde_min": 40, "hasta_min": 43, "carril": "manos", "etiqueta": "Plato", "paso": 4},
+    {"desde_min": 40, "hasta_min": 43, "carril": "reposo", "etiqueta": "Frío", "paso": 4}
   ]
 }

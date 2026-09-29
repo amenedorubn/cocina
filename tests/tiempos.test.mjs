@@ -29,10 +29,11 @@ test('albóndigas · paso 2: 10 min y avisos a 0:00, 3:00 y 5:00', () => {
   assert.match(p2.detalle, /AIR FRY a 200 °C, 10 min/);
 });
 
-test('albóndigas · paso 3 (tanda 2): 10 min y avisos a 0:00 y 5:00', () => {
+test('albóndigas · paso 3 (tanda 2, obligatoria): 10 min y avisos a 0:00 y 5:00', () => {
   assert.equal(p3.duracion_s, 600);
   assert.deepEqual(p3.avisos.map(a => a.a_los_s), [0, 300]);
-  assert.match(p3.voz_inicio, /Si cupieron todas, pulsa Hecho y sigue/);
+  assert.match(p3.titulo, /tanda 2 de 2/);
+  assert.doesNotMatch(p3.voz_inicio + p3.detalle, /cupieron|solo si/i);
 });
 
 test('albóndigas · paso 4: 12 min y avisos a 0:00, 6:00 y 9:00', () => {
@@ -47,24 +48,24 @@ test('albóndigas · paso 5: reposo de 45 min', () => {
   assert.equal(p5.duracion_s, 0);
 });
 
-test('albóndigas · el gantt de 1 tanda dura ~30 min más el reparto y cuadra con los pasos', () => {
+test('albóndigas · el gantt (2 tandas) dura 40 min más el reparto y cuadra con los pasos', () => {
   const g = albondigas.plan_gantt;
   const seg = (paso, carril) => g.find(x => x.paso === paso && x.carril === carril);
-  for (const [idx, carril] of [[0, 'manos'], [1, 'airfryer'], [3, 'fuego']]) {
+  for (const [idx, carril] of [[0, 'manos'], [1, 'airfryer'], [2, 'airfryer'], [3, 'fuego']]) {
     const s = seg(idx, carril);
     assert.equal((s.hasta_min - s.desde_min) * 60, albondigas.pasos[idx].duracion_s, `paso ${idx + 1}`);
   }
   assert.equal(seg(1, 'airfryer').desde_min, seg(0, 'manos').hasta_min);
-  assert.equal(seg(3, 'fuego').desde_min, seg(1, 'airfryer').hasta_min);
-  assert.equal(seg(3, 'fuego').hasta_min, 30);
-  assert.equal(seg(4, 'manos').desde_min, 30);
-  assert.ok(g.every(x => x.paso !== 2), 'el gantt es de 1 tanda: sin paso 3');
-  // Con la tanda 2 el total declarado es 8+10+10+12 = 40 min.
+  assert.equal(seg(2, 'airfryer').desde_min, seg(1, 'airfryer').hasta_min);
+  assert.equal(seg(3, 'fuego').desde_min, seg(2, 'airfryer').hasta_min);
+  assert.equal(seg(3, 'fuego').hasta_min, 40);
+  assert.equal(seg(4, 'manos').desde_min, 40);
+  // 8+10+10+12 = 40 min de cocina.
   const total = albondigas.pasos.reduce((a, p) => a + p.duracion_s, 0) / 60;
   assert.equal(total, albondigas.meta.tiempo_total_min);
 });
 
-test('albóndigas · el agua va primero y hay checklist de capa única', () => {
+test('albóndigas · el agua va primero y el checklist reparte en dos grupos', () => {
   assert.match(p1.detalle, /^Lo primero: pota con agua y sal a fuego alto, tapada\./);
-  assert.match(p1.checklist[0], /Caben todas en una capa en el Ninja sin tocarse/);
+  assert.match(p1.checklist[0], /11 y 10 bolas/);
 });
